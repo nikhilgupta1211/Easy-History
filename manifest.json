@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Getting started example",
-  "description": "This extension shows a Google Image search result for the current page",
+  "name": "Calculator",
+  "description": "Maths Calculator",
   "version": "1.0",
 
   "browser_action": {
@@ -12,6 +12,6 @@
   },
   "permissions": [
     "activeTab",
-    "https://ajax.googleapis.com/"
+    "history" 
   ]
 }
