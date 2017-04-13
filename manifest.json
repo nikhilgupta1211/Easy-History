@@ -12,6 +12,7 @@
   },
   "permissions": [
     "activeTab",
-    "history" 
+    "history",
+    "storage" 
   ]
 }

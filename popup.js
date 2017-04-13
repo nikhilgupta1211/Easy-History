@@ -1,20 +1,29 @@
+/*To show the add keyword option*/
 Mousetrap.bind('ctrl+shift+k', function(e) {
     chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
         document.getElementById("weburl").defaultValue = tabs[0].url;
+        document.getElementById("weburl").setAttribute('title', tabs[0].url);
     });
     show('key-div');
 });
 
+// document.getElementById('nice').
+var li;
+var liSelected;
+
+/* To hide an element*/
 function hide(name) {
     document.getElementById(name).style.display = 'none';
 }
 
+/* To show an element*/
 function show(name) {
     document.getElementById(name).style.display = 'block';
 }
 
 hide('key-div');
 
+/* Empty the div if there is no input in the search box*/
 function empty() {
     if (document.getElementById("in1").value == "") {
         document.getElementById("nice").innerHTML = "";
@@ -23,6 +32,7 @@ function empty() {
 
 document.getElementById("in1").addEventListener("keyup", srch);
 
+/* Search the history*/
 function srch() {
     var nn = document.getElementById("nice");
     nn.innerHTML = "";
@@ -35,7 +45,8 @@ function srch() {
         }
     }
     // nn.innerHTML = dd;
-    buildPopupDom("nice", dd)
+    buildPopupDom("nice", dd);
+    li = $('li');
     empty();
 }
 
@@ -63,6 +74,7 @@ function buildPopupDom(divName, data) {
         li.appendChild(a);
         ul.appendChild(li);
     }
+    // li = document.getElementById('nice').getElementsByTagName('li')[0];
 }
 
 hist = [];
@@ -137,6 +149,69 @@ function buildTypedUrlList() {
     //   buildPopupDom(divName, urlArray.slice(0, 10));
     // };
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     buildTypedUrlList();
 });
+
+// Mousetrap.bind('down', function(e) {
+//     console.log('down key');
+//     if (li !== undefined) {
+//         if (liSelected) {
+//             liSelected.removeClass('selected');
+//             next = liSelected.next();
+//             if (next.length > 0) {
+//                 liSelected = next.addClass('selected');
+//             } else {
+//                 liSelected = li.eq(0).addClass('selected');
+//             }
+//         } else {
+//             liSelected = li.eq(0).addClass('selected');
+//         }
+//     }
+// });
+
+// Mousetrap.bind('up', function(e) {
+//     console.log('up key');
+//     if (li !== undefined) {
+//         if (liSelected) {
+//             liSelected.removeClass('selected');
+//             next = liSelected.prev();
+//             if (next.length > 0) {
+//                 liSelected = next.addClass('selected');
+//             } else {
+//                 liSelected = li.last().addClass('selected');
+//             }
+//         } else {
+//             liSelected = li.last().addClass('selected');
+//         }
+//     }
+// });
+
+window.displayBoxIndex = -1;
+var Navigate = function (diff) {
+        displayBoxIndex += diff;
+        var oBoxCollection = $("#nice ul li");
+        if (displayBoxIndex >= oBoxCollection.length) {
+            displayBoxIndex = 0;
+        }
+        if (displayBoxIndex < 0) {
+            displayBoxIndex = oBoxCollection.length - 1;
+        }
+        var cssClass = "selected";
+        oBoxCollection.removeClass(cssClass).eq(displayBoxIndex).addClass(cssClass);
+    }
+    $(document).on('keypress keyup', function (e) {
+        if (e.keyCode == 13 || e.keyCode == 32) {
+            $('.selected')[0].getElementsByTagName('a')[0].click();
+            return false;
+        }
+        if (e.keyCode == 40) {
+            //down arrow
+            Navigate(1);
+        }
+        if (e.keyCode == 38) {
+            //up arrow
+            Navigate(-1);
+        }
+    });

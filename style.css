@@ -38,6 +38,7 @@
 .submt {
     padding: 7px;
     margin-top: 5px;
+    margin-left: 2px;
     background-color: #ff5252;
     color: white;
     font-weight: bold;
@@ -47,4 +48,8 @@
 
 .submt:hover {
     background-color: #ff3333;
+}
+
+.selected {
+	background-color: blue !important;
 }
