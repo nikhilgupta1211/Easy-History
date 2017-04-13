@@ -1,14 +1,14 @@
 {
   "manifest_version": 2,
 
-  "name": "Calculator",
-  "description": "Maths Calculator",
+  "name": "History",
+  "description": "Provide a search to the history",
   "version": "1.0",
 
   "browser_action": {
     "default_icon": "icon.png",
     "default_popup": "popup.html",
-    "default_title": "Click me!"
+    "default_title": "Search the History"
   },
   "permissions": [
     "activeTab",

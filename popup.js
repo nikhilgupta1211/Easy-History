@@ -1,3 +1,26 @@
+Mousetrap.bind('ctrl+shift+k', function(e) {
+    chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+        document.getElementById("weburl").defaultValue = tabs[0].url;
+    });
+    show('key-div');
+});
+
+function hide(name) {
+    document.getElementById(name).style.display = 'none';
+}
+
+function show(name) {
+    document.getElementById(name).style.display = 'block';
+}
+
+hide('key-div');
+
+function empty() {
+    if (document.getElementById("in1").value == "") {
+        document.getElementById("nice").innerHTML = "";
+    }
+}
+
 document.getElementById("in1").addEventListener("keyup", srch);
 
 function srch() {
@@ -6,13 +29,14 @@ function srch() {
     dd = []
     var key = this.value;
     console.log(key);
-    for (var i = 0;i<hist.length;i++ ){
-      if (hist[i].includes(key)) {
-        dd.push(hist[i]);
-      }
+    for (var i = 0; i < hist.length; i++) {
+        if (hist[i].includes(key)) {
+            dd.push(hist[i]);
+        }
     }
     // nn.innerHTML = dd;
-    buildPopupDom("nice",dd)
+    buildPopupDom("nice", dd)
+    empty();
 }
 
 // Event listner for clicks on links in a browser action popup.
@@ -44,7 +68,7 @@ function buildPopupDom(divName, data) {
 hist = [];
 // Search history to find up to ten links that a user has typed in,
 // and show those links in a popup.
-function buildTypedUrlList(divName) {
+function buildTypedUrlList() {
     // To look for history items visited in the last week,
     // subtract a week of microseconds from the current time.
     var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
@@ -62,13 +86,13 @@ function buildTypedUrlList(divName) {
                 var url = historyItems[i].url;
                 hist.push(url);
                 // var processVisitsWithUrl = function(url) {
-                //   // We need the url of the visited item to process the visit.
-                //   // Use a closure to bind the  url into the callback's args.
-                //   return function(visitItems) {
-                //     processVisits(url, visitItems);
-                //   };
+                //     // We need the url of the visited item to process the visit.
+                //     // Use a closure to bind the  url into the callback's args.
+                //     return function(visitItems) {
+                //         processVisits(url, visitItems);
+                //     };
                 // };
-                // chrome.history.getVisits({url: url}, processVisitsWithUrl(url));
+                // chrome.history.getVisits({ url: url }, processVisitsWithUrl(url));
                 // numRequestsOutstanding++;
             }
             // if (!numRequestsOutstanding) {
@@ -114,5 +138,5 @@ function buildTypedUrlList(divName) {
     // };
 }
 document.addEventListener('DOMContentLoaded', function() {
-    buildTypedUrlList("typedUrl_div");
+    buildTypedUrlList();
 });

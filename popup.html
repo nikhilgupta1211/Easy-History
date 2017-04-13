@@ -1,28 +1,35 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
     <title>Getting Started Extension's Popup</title>
     <style>
     body {
-    font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-    font-size: 100%;
+        font-family: 'Bree Serif', serif;
+        min-width: 200px;
     }
+    
     #status {
-    white-space: pre;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 400px;
+        white-space: pre;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 400px;
     }
     </style>
-  </head>
-  <body>
-    <input type="search" id="in1" autofocus>
-    <!-- <input type="text" name="in1" id="in2"> -->
-    <!-- <button id="sub">Submit</button> -->
-    <!-- <p id="ret"></p> -->
-    <div id="nice"></div>
-    <!-- <h2>Recently Typed URLs:</h2> -->
-    <div id="typedUrl_div"></div>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
+</head>
+
+<body>
+    <div id="key-div" class="key-d">
+        <input type="text" id="weburl" class="inpt1" placeholder="Website Url">
+        <input type="text" id="in2" class="inpt1" placeholder="Enter the Keyword Here">
+        <button id="sub" class="submt">Submit</button>
+    </div>
+    <input type="search" id="in1" class="inpt mousetrap" align="middle" placeholder="Search" autofocus>
+    <div id="nice" class="hist-div"></div>
+    <script src="mousetrap.js"></script>
     <script src="popup.js"></script>
-  </body>
+</body>
+
 </html>

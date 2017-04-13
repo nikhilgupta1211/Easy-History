@@ -1,0 +1,50 @@
+.hist-div ul li {
+    list-style: none;
+    background-color: #ff5252;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.hist-div ul {
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.hist-div ul a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    display: block;
+}
+
+.inpt {
+    text-align: center;
+    padding: 8px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.inpt1 {
+    text-align: center;
+    padding: 8px;
+    font-size: 16px;
+}
+
+.key-d {
+    margin-bottom: 5px;
+}
+
+.submt {
+    padding: 7px;
+    margin-top: 5px;
+    background-color: #ff5252;
+    color: white;
+    font-weight: bold;
+    border: none;
+    font-size: 15px;
+}
+
+.submt:hover {
+    background-color: #ff3333;
+}
