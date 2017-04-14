@@ -12,16 +12,20 @@ body {
 }
 
 .hist-div.sea-div ul li {
-    background-color: red;
+    background-color: #e21010;
     margin-bottom: 0;
 }
 
 .hist-div ul li {
     list-style: none;
-    background-color: #ff5252;
+    background-color: #444242;
     margin-bottom: 10px;
     padding: 10px;
     font-size: 20px;
+}
+
+a:focus {
+    outline: none;
 }
 
 .hist-div ul {
@@ -57,7 +61,7 @@ body {
     padding: 7px;
     margin-top: 5px;
     margin-left: 2px;
-    background-color: #ff5252;
+    background-color: #00cccc;
     color: white;
     font-weight: bold;
     border: none;
@@ -65,11 +69,11 @@ body {
 }
 
 .submt:hover {
-    background-color: #ff3333;
+    background-color: #0db9b9;
 }
 
 .selected {
-    background-color: blue !important;
+    border: 5px solid #00cccc;
 }
 
 #msg {
@@ -87,9 +91,7 @@ body {
     border: 1px solid;
 }
 
-.instructions{
-	margin: 10px 0 0 0;
-	background-color: #f0eeee;
+.instructions {
+    margin: 10px 0 0 0;
+    background-color: #f0eeee;
 }
-
-

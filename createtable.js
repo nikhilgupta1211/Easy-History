@@ -1,13 +1,20 @@
 $('#key_table').hide();
 
-Mousetrap.bind('alt+h', function(e){
+Mousetrap.bind('alt+h', function(e) {
     $('#key_table').toggle();
 });
 
 function tabl(keyword_data) {
+    document.getElementById('key_table').innerHTML = ""
     var table = document.getElementById('key_table');
-    console.log(keyword_data);
-    console.log('inside tabl()');
+    var tr = document.createElement('tr');
+    table.appendChild(tr);
+    var th = document.createElement('th');
+    tr.appendChild(th);
+    th.innerHTML = 'Keyword';
+    var th1 = document.createElement('th');
+    tr.appendChild(th1);
+    th1.innerHTML = 'URL';
     $.each(keyword_data, function(key, value) {
         var tr = document.createElement('tr');
         table.appendChild(tr);
