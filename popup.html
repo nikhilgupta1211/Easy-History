@@ -8,19 +8,28 @@
 </head>
 
 <body id="body">
+    <table id="key_table" class="tabl">
+        <tr>
+            <th>Keyword</th>
+            <th>URL</th>
+        </tr>
+    </table>
     <div id="key-div" class="key-d">
-        <input type="text" id="weburl" class="inpt1" placeholder="Website Url">
-        <input type="text" id="in2" class="inpt1" placeholder="Enter the Keyword Here">
+        <input type="text" id="weburl" class="inpt1 mousetrap" placeholder="Website Url">
+        <input type="text" id="in2" class="inpt1 mousetrap" placeholder="Enter the Keyword Here">
+        <span style="font-size:18px;margin-left: 32px">Ctrl+s or</span>
         <button id="sub" class="submt">Submit</button>
     </div>
     <p id="msg"></p>
     <input type="search" id="in1" class="inpt mousetrap" placeholder="Search" autofocus>
     <div id="search-key" class="hist-div sea-div"></div>
     <div id="nice" class="hist-div"></div>
+    <p class="instructions">Use 'Ctrl+shift+k' to add a keyword, 'up/down' arrows to navigate and 'Alt+h' to show the Keywords</p>
     <script src="jquery.min.js"></script>
     <script src="mousetrap.js"></script>
     <script src="store.js"></script>
     <script src="popup.js"></script>
+    <script src="createtable.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 body {
     font-family: 'Bree Serif', serif;
     min-width: 200px;
+    margin: 5px 0 0 0;
 }
 
 #status {
@@ -10,9 +11,9 @@ body {
     max-width: 400px;
 }
 
-.hist-div.sea-div ul li{
-	background-color: red;
-	margin-bottom: 0;
+.hist-div.sea-div ul li {
+    background-color: red;
+    margin-bottom: 0;
 }
 
 .hist-div ul li {
@@ -75,3 +76,20 @@ body {
     text-align: center;
     font-size: 20px;
 }
+
+.tabl {
+    width: 100%;
+    font-size: 14px;
+}
+
+.tabl tr td {
+    text-align: center;
+    border: 1px solid;
+}
+
+.instructions{
+	margin: 10px 0 0 0;
+	background-color: #f0eeee;
+}
+
+

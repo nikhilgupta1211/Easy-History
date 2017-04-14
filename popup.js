@@ -15,6 +15,7 @@ document.getElementById("in1").addEventListener("keyup", srch);
 function datafetch() {
     chrome.storage.sync.get(null, function(items) {
         keyword_data = items;
+        tabl(keyword_data);
     })
 }
 
@@ -70,7 +71,6 @@ function buildPopupDom(divName, data) {
         li.appendChild(a);
         ul.appendChild(li);
     }
-    // li = document.getElementById('nice').getElementsByTagName('li')[0];
 }
 
 hist = [];
