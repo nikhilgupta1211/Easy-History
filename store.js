@@ -9,7 +9,6 @@ Mousetrap.bind('ctrl+shift+k', function(e) {
         document.getElementById("weburl").setAttribute('title', tabs[0].url);
     });
     $('#key-div').toggle();
-
 });
 
 $('#sub').click(function() {
@@ -34,14 +33,14 @@ function save() {
             [keyword]: url
         }, function() {
             $('#key-div').hide();
-            $('#msg').text('Keyword Saved').show().fadeOut(1000);
+            $('#msg').text('Keyword Saved').show().fadeOut(2000);
             datafetch();
         });
     } else {
         if (url == "") {
-            $('#msg').text("URL can't be empty").show().fadeOut(1000);
+            $('#msg').text("URL can't be empty").show().fadeOut(2000);
         } else {
-            $('#msg').text("Keyword can't be empty").show().fadeOut(1000);
+            $('#msg').text("Keyword can't be empty").show().fadeOut(2000);
         }
     }
 }

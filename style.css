@@ -2,6 +2,8 @@ body {
     font-family: 'Bree Serif', serif;
     min-width: 200px;
     margin: 5px 0 0 0;
+    max-width: 400px;
+    background-color: black;
 }
 
 #status {
@@ -12,16 +14,20 @@ body {
 }
 
 .hist-div.sea-div ul li {
-    background-color: #e21010;
+    background-color: #444242;
     margin-bottom: 0;
+}
+
+.hist-div.sea-div ul li a{
+    color:#ADFF2F;
 }
 
 .hist-div ul li {
     list-style: none;
     background-color: #444242;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
     padding: 10px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 a:focus {
@@ -30,14 +36,16 @@ a:focus {
 
 .hist-div ul {
     padding: 0;
-    overflow-x: hidden;
+    overflow: hidden;
+    max-height: 400px;
 }
 
 .hist-div ul a {
-    color: white;
+    color:#DCDCDC;
     text-decoration: none;
     font-weight: bold;
     display: block;
+    word-wrap:break-word;
 }
 
 .inpt {
@@ -51,6 +59,8 @@ a:focus {
     text-align: center;
     padding: 8px 0;
     font-size: 16px;
+    width: 100%;
+    margin-bottom: 2px;
 }
 
 .key-d {
@@ -61,37 +71,50 @@ a:focus {
     padding: 7px;
     margin-top: 5px;
     margin-left: 2px;
-    background-color: #00cccc;
-    color: white;
+    background-color: #ADFF2F;
+    color: black;
     font-weight: bold;
     border: none;
     font-size: 15px;
 }
 
 .submt:hover {
-    background-color: #0db9b9;
+    background-color: #a1e834;
 }
 
 .selected {
-    border: 5px solid #00cccc;
+    border: 5px solid;
+}
+
+.selected a{
+    color: #ADFF2F !important;
 }
 
 #msg {
     text-align: center;
     font-size: 20px;
+    color: #ADFF2F;
 }
 
 .tabl {
     width: 100%;
     font-size: 14px;
+    color: white;
+}
+
+.tabl tr th{
+	text-align:left;
 }
 
 .tabl tr td {
-    text-align: center;
+    text-align: left;
     border: 1px solid;
+    word-wrap:break-word;
+    max-width: 310px;
 }
 
 .instructions {
     margin: 10px 0 0 0;
     background-color: #f0eeee;
+    font-size: 15px;
 }

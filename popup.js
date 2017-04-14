@@ -163,6 +163,7 @@ var Navigate = function(diff) {
     var cssClass = "selected";
     oBoxCollection.removeClass(cssClass).eq(displayBoxIndex).addClass(cssClass);
     oBoxCollection.eq(displayBoxIndex)[0].getElementsByTagName('a')[0].focus();
+    $('#in1').focus();
 }
 $(document).on('keypress keyup', function(e) {
     if (e.keyCode == 13 || e.keyCode == 32) {
