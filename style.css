@@ -1,3 +1,20 @@
+body {
+    font-family: 'Bree Serif', serif;
+    min-width: 200px;
+}
+
+#status {
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 400px;
+}
+
+.hist-div.sea-div ul li{
+	background-color: red;
+	margin-bottom: 0;
+}
+
 .hist-div ul li {
     list-style: none;
     background-color: #ff5252;
@@ -20,14 +37,14 @@
 
 .inpt {
     text-align: center;
-    padding: 8px;
+    padding: 8px 0;
     font-size: 16px;
     width: 100%;
 }
 
 .inpt1 {
     text-align: center;
-    padding: 8px;
+    padding: 8px 0;
     font-size: 16px;
 }
 
@@ -51,5 +68,10 @@
 }
 
 .selected {
-	background-color: blue !important;
+    background-color: blue !important;
+}
+
+#msg {
+    text-align: center;
+    font-size: 20px;
 }

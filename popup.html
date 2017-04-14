@@ -2,20 +2,7 @@
 <html>
 
 <head>
-    <title>Getting Started Extension's Popup</title>
-    <style>
-    body {
-        font-family: 'Bree Serif', serif;
-        min-width: 200px;
-    }
-    
-    #status {
-        white-space: pre;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        max-width: 400px;
-    }
-    </style>
+    <title>History Seeker</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Bree+Serif" rel="stylesheet">
 </head>
@@ -26,10 +13,13 @@
         <input type="text" id="in2" class="inpt1" placeholder="Enter the Keyword Here">
         <button id="sub" class="submt">Submit</button>
     </div>
-    <input type="search" id="in1" class="inpt mousetrap" align="middle" placeholder="Search" autofocus>
+    <p id="msg"></p>
+    <input type="search" id="in1" class="inpt mousetrap" placeholder="Search" autofocus>
+    <div id="search-key" class="hist-div sea-div"></div>
     <div id="nice" class="hist-div"></div>
     <script src="jquery.min.js"></script>
     <script src="mousetrap.js"></script>
+    <script src="store.js"></script>
     <script src="popup.js"></script>
 </body>
 
