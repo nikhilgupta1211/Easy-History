@@ -29,7 +29,6 @@ function srch() {
     var key = this.value;
     if (keyword_data[key] != undefined) {
         if (!skd.includes(keyword_data[key])) {
-            console.log('Inside keyword Block')
             skd.push(keyword_data[key]);
             buildPopupDomKey('search-key', skd);
         }
@@ -116,7 +115,8 @@ function buildTypedUrlList() {
             for (var i = 0; i < historyItems.length; ++i) {
                 var url = historyItems[i].url;
                 var title = historyItems[i].title;
-                hist.push([title, url]);
+                var visitCount = historyItems[i].visitCount;
+                hist.push([title, url, visitCount]);
                 // var processVisitsWithUrl = function(url) {
                 //     // We need the url of the visited item to process the visit.
                 //     // Use a closure to bind the  url into the callback's args.
@@ -191,8 +191,12 @@ var Navigate = function(diff) {
 }
 $(document).on('keypress keyup', function(e) {
     if (e.keyCode == 13 || e.keyCode == 32) {
-        $('.selected')[0].getElementsByTagName('a')[0].click();
-        return false;
+        if ($('.selected').length == 0) {
+            $('li')[0].getElementsByTagName('a')[0].click();
+        } else {
+            $('.selected')[0].getElementsByTagName('a')[0].click();
+            return false;
+        }
     }
     if (e.keyCode == 40) {
         //down arrow

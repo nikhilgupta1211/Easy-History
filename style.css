@@ -28,6 +28,7 @@ body {
     margin-bottom: 4px;
     padding: 10px;
     font-size: 15px;
+    max-width: 390px;
 }
 
 .hist-div ul li p {
@@ -36,7 +37,7 @@ body {
     color: white;
 }
 
-.hist-div ul li p img{
+.hist-div ul li p img {
     margin-left: 5px;
 }
 
@@ -46,7 +47,8 @@ a:focus {
 
 .hist-div ul {
     padding: 0;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
     max-height: 400px;
 }
 
@@ -127,4 +129,37 @@ a:focus {
     margin: 10px 0 0 0;
     background-color: #f0eeee;
     font-size: 15px;
+}
+
+.hist-div ul {
+    scrollbar-face-color: #367CD2;
+    scrollbar-shadow-color: #FFFFFF;
+    scrollbar-highlight-color: #FFFFFF;
+    scrollbar-3dlight-color: #FFFFFF;
+    scrollbar-darkshadow-color: #FFFFFF;
+    scrollbar-track-color: #FFFFFF;
+    scrollbar-arrow-color: #FFFFFF;
+}
+
+.hist-div ul::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+/* Track */
+
+.hist-div ul::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+.hist-div ul::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #ADFF2F;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
