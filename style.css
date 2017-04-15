@@ -18,8 +18,8 @@ body {
     margin-bottom: 0;
 }
 
-.hist-div.sea-div ul li a{
-    color:#ADFF2F;
+.hist-div.sea-div ul li a {
+    color: #ADFF2F;
 }
 
 .hist-div ul li {
@@ -28,6 +28,16 @@ body {
     margin-bottom: 4px;
     padding: 10px;
     font-size: 15px;
+}
+
+.hist-div ul li p {
+    margin: 0;
+    margin-bottom: 2px;
+    color: white;
+}
+
+.hist-div ul li p img{
+    margin-left: 5px;
 }
 
 a:focus {
@@ -41,11 +51,11 @@ a:focus {
 }
 
 .hist-div ul a {
-    color:#DCDCDC;
+    color: #DCDCDC;
     text-decoration: none;
     font-weight: bold;
     display: block;
-    word-wrap:break-word;
+    word-wrap: break-word;
 }
 
 .inpt {
@@ -86,7 +96,7 @@ a:focus {
     border: 5px solid;
 }
 
-.selected a{
+.selected a {
     color: #ADFF2F !important;
 }
 
@@ -98,18 +108,18 @@ a:focus {
 
 .tabl {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
     color: white;
 }
 
-.tabl tr th{
-	text-align:left;
+.tabl tr th {
+    text-align: left;
 }
 
 .tabl tr td {
     text-align: left;
     border: 1px solid;
-    word-wrap:break-word;
+    word-wrap: break-word;
     max-width: 310px;
 }
 

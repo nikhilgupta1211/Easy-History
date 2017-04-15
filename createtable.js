@@ -1,6 +1,12 @@
 $('#key_table').hide();
 
 Mousetrap.bind('alt+h', function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
     $('#key_table').toggle();
 });
 

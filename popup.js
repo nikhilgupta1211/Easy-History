@@ -1,5 +1,6 @@
 var li;
 var liSelected;
+hist = [];
 keyword_data = {};
 
 datafetch();
@@ -30,14 +31,14 @@ function srch() {
         if (!skd.includes(keyword_data[key])) {
             console.log('Inside keyword Block')
             skd.push(keyword_data[key]);
-            buildPopupDom('search-key', skd);
+            buildPopupDomKey('search-key', skd);
         }
     } else {
         document.getElementById('search-key').innerHTML = "";
         skd = [];
     }
     for (var i = 0; i < hist.length; i++) {
-        if (hist[i].includes(key)) {
+        if (hist[i][1].includes(key)) {
             dd.push(hist[i]);
         }
     }
@@ -64,6 +65,29 @@ function buildPopupDom(divName, data) {
     popupDiv.appendChild(ul);
     for (var i = 0, ie = data.length; i < ie; ++i) {
         var a = document.createElement('a');
+        a.href = data[i][1];
+        a.innerHTML = data[i][1];
+        a.addEventListener('click', onAnchorClick);
+        var li = document.createElement('li');
+        var p = document.createElement('p');
+        var img = document.createElement('img');
+        img.src = 'http://www.google.com/s2/favicons?domain_url=' + data[i][1];
+        p.innerHTML = data[i][0];
+        if (data[i][0] != "") {
+            p.appendChild(img);
+            li.appendChild(p);
+        }
+        li.appendChild(a);
+        ul.appendChild(li);
+    }
+}
+
+function buildPopupDomKey(divName, data) {
+    var popupDiv = document.getElementById(divName);
+    var ul = document.createElement('ul');
+    popupDiv.appendChild(ul);
+    for (var i = 0, ie = data.length; i < ie; ++i) {
+        var a = document.createElement('a');
         a.href = data[i];
         a.appendChild(document.createTextNode(data[i]));
         a.addEventListener('click', onAnchorClick);
@@ -73,7 +97,6 @@ function buildPopupDom(divName, data) {
     }
 }
 
-hist = [];
 // Search history to find up to ten links that a user has typed in,
 // and show those links in a popup.
 function buildTypedUrlList() {
@@ -92,7 +115,8 @@ function buildTypedUrlList() {
             // For each history item, get details on all visits.
             for (var i = 0; i < historyItems.length; ++i) {
                 var url = historyItems[i].url;
-                hist.push(url);
+                var title = historyItems[i].title;
+                hist.push([title, url]);
                 // var processVisitsWithUrl = function(url) {
                 //     // We need the url of the visited item to process the visit.
                 //     // Use a closure to bind the  url into the callback's args.

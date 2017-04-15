@@ -1,18 +1,29 @@
 {
-  "manifest_version": 2,
+    "manifest_version": 2,
 
-  "name": "History",
-  "description": "Provide a search to the history",
-  "version": "1.0",
+    "name": "Easy History",
+    "description": "Visit webpages by just entering a simple Keyword and Search the history with a fast and clean Interface",
+    "commands": {
+          "_execute_browser_action": {
+            "suggested_key": {
+              "default": "Ctrl+Space",
+              "mac": "Command+Space"
+            },
+            "description": "Activate the Extension"
+          }},
+    "icons": {
+      "128": "icons1.png"
+    },
+    "version": "1.0",
 
-  "browser_action": {
-    "default_icon": "icon.png",
-    "default_popup": "popup.html",
-    "default_title": "Search the History"
-  },
-  "permissions": [
-    "activeTab",
-    "history",
-    "storage" 
-  ]
+    "browser_action": {
+        "default_icon": "icons1.png",
+        "default_popup": "popup.html",
+        "default_title": "Search the History"
+    },
+    "permissions": [
+        "activeTab",
+        "history",
+        "storage"
+    ]
 }
