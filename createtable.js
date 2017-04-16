@@ -1,6 +1,6 @@
 $('#key_table').hide();
 
-Mousetrap.bind('alt+h', function(e) {
+Mousetrap.bind('ctrl+b', function(e) {
     if (e.preventDefault) {
         e.preventDefault();
     } else {

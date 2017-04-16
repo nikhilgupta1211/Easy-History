@@ -207,3 +207,7 @@ $(document).on('keypress keyup', function(e) {
         Navigate(-1);
     }
 });
+
+Mousetrap.bind('esc', function(e){
+    window.close();
+});

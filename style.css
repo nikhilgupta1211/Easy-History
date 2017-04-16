@@ -35,6 +35,7 @@ body {
     margin: 0;
     margin-bottom: 2px;
     color: white;
+    word-wrap: break-word;
 }
 
 .hist-div ul li p img {
