@@ -1,9 +1,9 @@
 body {
-    font-family: 'Bree Serif', serif;
+    font-family: 'Roboto', sans-serif;
     min-width: 200px;
     margin: 5px 0 0 0;
     max-width: 400px;
-    background-color: black;
+    background-color: #161616;
 }
 
 #status {
@@ -14,8 +14,14 @@ body {
 }
 
 .hist-div.sea-div ul li {
-    background-color: #444242;
+    background-color: #161616;
     margin-bottom: 0;
+    border-top: 0.2px #616161 solid;
+}
+
+.hist-div.sea-div ul {
+    margin-bottom: 0;
+    margin-top: 6px;
 }
 
 .hist-div.sea-div ul li a {
@@ -24,11 +30,11 @@ body {
 
 .hist-div ul li {
     list-style: none;
-    background-color: #444242;
-    margin-bottom: 4px;
+    background-color: #161616;
     padding: 10px;
     font-size: 15px;
     max-width: 390px;
+    border-bottom: 0.2px #616161 solid;
 }
 
 .hist-div ul li p {
@@ -46,15 +52,20 @@ a:focus {
     outline: none;
 }
 
+li:hover {
+    background: #282828 !important;
+}
+
 .hist-div ul {
     padding: 0;
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: 400px;
+    margin-top: 4px;
 }
 
 .hist-div ul a {
-    color: #DCDCDC;
+    color: rgb(171, 170, 170);
     text-decoration: none;
     font-weight: bold;
     display: block;
@@ -65,15 +76,21 @@ a:focus {
     text-align: center;
     padding: 8px 0;
     font-size: 16px;
-    width: 100%;
+    width: 96%;
+    max-width: 380px;
+    position: relative;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0);
 }
 
 .inpt1 {
     text-align: center;
     padding: 8px 0;
     font-size: 16px;
-    width: 100%;
+    width: 96%;
     margin-bottom: 2px;
+    margin-left: 3px;
 }
 
 .key-d {
@@ -96,7 +113,7 @@ a:focus {
 }
 
 .selected {
-    border: 5px solid;
+    background: #282828 !important;
 }
 
 .selected a {
@@ -113,10 +130,11 @@ a:focus {
     width: 100%;
     font-size: 15px;
     color: white;
+    margin-bottom: 5px;
 }
 
 .tabl tr th {
-    text-align: left;
+    text-align: center;
 }
 
 .tabl tr td {
