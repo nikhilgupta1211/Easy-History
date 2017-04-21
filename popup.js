@@ -5,15 +5,14 @@ keyword_data = {};
 
 datafetch();
 
-function check_for_view_option(){
-chrome.storage.sync.get('options_select',function(item){
-    if (item.options_select == "view") {
-         hist = quickSort(hist,0,hist.length-1);
-    }
-    else{
-        return;
-    }
-});
+function check_for_view_option() {
+    chrome.storage.sync.get('options_select', function(item) {
+        if (item.options_select == "view") {
+            hist = quickSort(hist, 0, hist.length - 1);
+        } else {
+            return;
+        }
+    });
 }
 /* Empty the div if there is no input in the search box*/
 function empty() {
@@ -48,11 +47,25 @@ $('#in1').keyup(function(event) {
             skd = [];
         }
         for (var i = 0; i < hist.length; i++) {
-            if (hist[i][1].includes(key)) {
-                dd.push(hist[i]);
+            if (hist[i][0] != "") {
+                if (hist[i][0].toLowerCase().includes(key)) {
+                    dd.push(hist[i]);
+                } else {
+                    if (hist[i][1].includes(key)) {
+                        dd.push(hist[i]);
+                    }
+                }
+            } else {
+                if (hist[i][1].includes(key)) {
+                    dd.push(hist[i]);
+                }
             }
         }
-        buildPopupDom("nice", dd);
+
+        // var t0 = performance.now();
+        buildPopupDom("nice", dd.slice(0, 250));
+        // var t1 = performance.now();
+        // console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
         empty();
     }
 });
@@ -111,14 +124,14 @@ function buildPopupDomKey(divName, data) {
 function buildTypedUrlList() {
     // To look for history items visited in the last week,
     // subtract a week of microseconds from the current time.
-    var microsecondsBack = 1000 * 60 * 60 * 24 * 30;
+    var microsecondsBack = 1000 * 60 * 60 * 24 * 100;
     var startTime = (new Date).getTime() - microsecondsBack;
     // Track the number of callbacks from chrome.history.getVisits()
     // that we expect to get.  When it reaches zero, we have all results.
     var numRequestsOutstanding = 0;
     chrome.history.search({
             'text': '', // Return every history item....
-            'maxResults': 2000,
+            'maxResults': 15000,
             'startTime': startTime
         },
         function(historyItems) {
