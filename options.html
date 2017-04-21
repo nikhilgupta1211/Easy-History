@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Easy History Options</title>
-    <link rel="stylesheet" href="options.css">
 </head>
 
 <body>
-<h1>Easy History Options</h1>
+    <h1>Easy History Options</h1>
+    <h2>Sort the history according to:</h2>
     <form id="opt_form">
-        <input type="radio" name="tp" value="time"> Time
+        <h3><input type="radio" name="tp" value="time" style="font-size: 20px"> Time </input></h3>
+        <p>(History will be arranged in a manner such that the last visited link will be on the top)</p>
+        <h3><input type="radio" name="tp" value="view" style="font-size: 20px"> Visits </input></h3>
+        <p>(History will be arranged in a manner such that the most visited link will be on the top)</p>
         <br>
-        <input type="radio" name="tp" value="view"> Views
-        <br><br>
         <button id="opt_sub" type="button">Submit</button>
     </form>
     <p id="opt_msg">Option Set</p>
