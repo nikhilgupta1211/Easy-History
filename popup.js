@@ -62,6 +62,7 @@ $('#in1').keyup(function(event) {
             }
         }
 
+        window.displayBoxIndex = -1;
         // var t0 = performance.now();
         buildPopupDom("nice", dd.slice(0, 250));
         // var t1 = performance.now();
@@ -150,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function() {
     buildTypedUrlList();
 });
 
-window.displayBoxIndex = -1;
 var Navigate = function(diff) {
     displayBoxIndex += diff;
     var oBoxCollection = $("li");
