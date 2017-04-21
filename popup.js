@@ -4,14 +4,22 @@ hist = [];
 keyword_data = {};
 
 datafetch();
+
+function check_for_view_option() {
+    chrome.storage.sync.get('options_select', function(item) {
+        if (item.options_select == "view") {
+            hist = quickSort(hist, 0, hist.length - 1);
+        } else {
+            return;
+        }
+    });
+}
 /* Empty the div if there is no input in the search box*/
 function empty() {
     if (document.getElementById("in1").value == "") {
         document.getElementById("nice").innerHTML = "";
     }
 }
-
-document.getElementById("in1").addEventListener("keyup", srch);
 
 function datafetch() {
     chrome.storage.sync.get(null, function(items) {
@@ -21,31 +29,46 @@ function datafetch() {
 }
 
 skd = [];
-/* Search the history*/
-function srch() {
-    var nn = document.getElementById("nice");
-    nn.innerHTML = "";
-    dd = [];
-    var key = this.value;
-    if (keyword_data[key] != undefined) {
-        if (!skd.includes(keyword_data[key])) {
-            skd.push(keyword_data[key]);
-            buildPopupDomKey('search-key', skd);
+
+// Search Function
+$('#in1').keyup(function(event) {
+    if (event.keyCode <= 36 || event.keyCode >= 41) {
+        var nn = document.getElementById("nice");
+        nn.innerHTML = "";
+        dd = [];
+        var key = this.value;
+        if (keyword_data[key] != undefined) {
+            if (!skd.includes(keyword_data[key])) {
+                skd.push(keyword_data[key]);
+                buildPopupDomKey('search-key', skd);
+            }
+        } else {
+            document.getElementById('search-key').innerHTML = "";
+            skd = [];
         }
-    } else {
-        document.getElementById('search-key').innerHTML = "";
-        skd = [];
-    }
-    for (var i = 0; i < hist.length; i++) {
-        if (hist[i][1].includes(key)) {
-            dd.push(hist[i]);
+        for (var i = 0; i < hist.length; i++) {
+            if (hist[i][0] != "") {
+                if (hist[i][0].toLowerCase().includes(key)) {
+                    dd.push(hist[i]);
+                } else {
+                    if (hist[i][1].includes(key)) {
+                        dd.push(hist[i]);
+                    }
+                }
+            } else {
+                if (hist[i][1].includes(key)) {
+                    dd.push(hist[i]);
+                }
+            }
         }
+
+        // var t0 = performance.now();
+        buildPopupDom("nice", dd.slice(0, 250));
+        // var t1 = performance.now();
+        // console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
+        empty();
     }
-    // nn.innerHTML = dd;
-    buildPopupDom("nice", dd);
-    li = $('li');
-    empty();
-}
+});
 
 // Event listner for clicks on links in a browser action popup.
 // Open the link in a new tab of the current window.
@@ -65,7 +88,7 @@ function buildPopupDom(divName, data) {
     for (var i = 0, ie = data.length; i < ie; ++i) {
         var a = document.createElement('a');
         a.href = data[i][1];
-        a.innerHTML = data[i][1];
+        a.innerHTML = data[i][1].slice(0, 200);
         a.addEventListener('click', onAnchorClick);
         var li = document.createElement('li');
         var p = document.createElement('p');
@@ -101,14 +124,15 @@ function buildPopupDomKey(divName, data) {
 function buildTypedUrlList() {
     // To look for history items visited in the last week,
     // subtract a week of microseconds from the current time.
-    var microsecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
-    var oneWeekAgo = (new Date).getTime() - microsecondsPerWeek;
+    var microsecondsBack = 1000 * 60 * 60 * 24 * 100;
+    var startTime = (new Date).getTime() - microsecondsBack;
     // Track the number of callbacks from chrome.history.getVisits()
     // that we expect to get.  When it reaches zero, we have all results.
     var numRequestsOutstanding = 0;
     chrome.history.search({
             'text': '', // Return every history item....
-            'maxResults': 500 // that was accessed less than one week ago.
+            'maxResults': 15000,
+            'startTime': startTime
         },
         function(historyItems) {
             // For each history item, get details on all visits.
@@ -117,57 +141,9 @@ function buildTypedUrlList() {
                 var title = historyItems[i].title;
                 var visitCount = historyItems[i].visitCount;
                 hist.push([title, url, visitCount]);
-                // var processVisitsWithUrl = function(url) {
-                //     // We need the url of the visited item to process the visit.
-                //     // Use a closure to bind the  url into the callback's args.
-                //     return function(visitItems) {
-                //         processVisits(url, visitItems);
-                //     };
-                // };
-                // chrome.history.getVisits({ url: url }, processVisitsWithUrl(url));
-                // numRequestsOutstanding++;
             }
-            // if (!numRequestsOutstanding) {
-            //   onAllVisitsProcessed();
-            // }
-            // buildPopupDom(divName, hist);
+            check_for_view_option();
         });
-    // Maps URLs to a count of the number of times the user typed that URL into
-    // the omnibox.
-    // var urlToCount = {};
-    // // Callback for chrome.history.getVisits().  Counts the number of
-    // // times a user visited a URL by typing the address.
-    // var processVisits = function(url, visitItems) {
-    //   for (var i = 0, ie = visitItems.length; i < ie; ++i) {
-    //     // Ignore items unless the user typed the URL.
-    //     if (visitItems[i].transition != 'typed') {
-    //       continue;
-    //     }
-    //     if (!urlToCount[url]) {
-    //       urlToCount[url] = 0;
-    //     }
-    //     urlToCount[url]++;
-    //   }
-    //   // If this is the final outstanding call to processVisits(),
-    //   // then we have the final results.  Use them to build the list
-    //   // of URLs to show in the popup.
-    //   if (!--numRequestsOutstanding) {
-    //     onAllVisitsProcessed();
-    //   }
-    // };
-    // // This function is called when we have the final list of URls to display.
-    // var onAllVisitsProcessed = function() {
-    //   // Get the top scorring urls.
-    //   urlArray = [];
-    //   for (var url in urlToCount) {
-    //     urlArray.push(url);
-    //   }
-    //   // Sort the URLs by the number of times the user typed them.
-    //   urlArray.sort(function(a, b) {
-    //     return urlToCount[b] - urlToCount[a];
-    //   });
-    //   buildPopupDom(divName, urlArray.slice(0, 10));
-    // };
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -189,8 +165,8 @@ var Navigate = function(diff) {
     oBoxCollection.eq(displayBoxIndex)[0].getElementsByTagName('a')[0].focus();
     $('#in1').focus();
 }
-$(document).on('keypress keyup', function(e) {
-    if (e.keyCode == 13 || e.keyCode == 32) {
+$(document).on('keydown', function(e) {
+    if (e.keyCode == 13) {
         if ($('.selected').length == 0) {
             $('li')[0].getElementsByTagName('a')[0].click();
         } else {
@@ -208,6 +184,45 @@ $(document).on('keypress keyup', function(e) {
     }
 });
 
-Mousetrap.bind('esc', function(e){
+Mousetrap.bind('esc', function(e) {
     window.close();
 });
+
+function quickSort(arr, left, right) {
+    var len = arr.length,
+        pivot,
+        partitionIndex;
+
+
+    if (left < right) {
+        pivot = right;
+        partitionIndex = partition(arr, pivot, left, right);
+
+        //sort left and right
+        quickSort(arr, left, partitionIndex - 1);
+        quickSort(arr, partitionIndex + 1, right);
+    }
+    return arr;
+}
+
+
+function partition(arr, pivot, left, right) {
+    var pivotValue = arr[pivot][2],
+        partitionIndex = left;
+
+    for (var i = left; i < right; i++) {
+        if (arr[i][2] > pivotValue) {
+            swap(arr, i, partitionIndex);
+            partitionIndex++;
+        }
+    }
+    swap(arr, right, partitionIndex);
+    return partitionIndex;
+}
+
+
+function swap(arr, i, j) {
+    var temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+}
