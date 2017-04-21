@@ -3,6 +3,7 @@
 
     "name": "Easy History",
     "description": "Visit webpages by just entering a simple Keyword and Search the history with a fast and clean Interface",
+    "options_page": "options.html",
     "commands": {
           "_execute_browser_action": {
             "suggested_key": {
