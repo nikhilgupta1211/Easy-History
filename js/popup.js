@@ -14,6 +14,7 @@ function check_for_view_option() {
         }
     });
 }
+
 /* Empty the div if there is no input in the search box*/
 function empty() {
     if (document.getElementById("in1").value == "") {
@@ -80,6 +81,7 @@ function onAnchorClick(event) {
     });
     return false;
 }
+
 // Given an array of URLs, build a DOM list of those URLs in the
 // browser action popup.
 function buildPopupDom(divName, data) {
@@ -120,23 +122,18 @@ function buildPopupDomKey(divName, data) {
     }
 }
 
-// Search history to find up to ten links that a user has typed in,
-// and show those links in a popup.
+// Fetch the history
 function buildTypedUrlList() {
-    // To look for history items visited in the last week,
-    // subtract a week of microseconds from the current time.
+    // To look for history items visited in the last 100 days,
     var microsecondsBack = 1000 * 60 * 60 * 24 * 100;
     var startTime = (new Date).getTime() - microsecondsBack;
-    // Track the number of callbacks from chrome.history.getVisits()
-    // that we expect to get.  When it reaches zero, we have all results.
     var numRequestsOutstanding = 0;
     chrome.history.search({
-            'text': '', // Return every history item....
+            'text': '',
             'maxResults': 15000,
             'startTime': startTime
         },
         function(historyItems) {
-            // For each history item, get details on all visits.
             for (var i = 0; i < historyItems.length; ++i) {
                 var url = historyItems[i].url;
                 var title = historyItems[i].title;
@@ -165,6 +162,7 @@ var Navigate = function(diff) {
     oBoxCollection.eq(displayBoxIndex)[0].getElementsByTagName('a')[0].focus();
     $('#in1').focus();
 }
+
 $(document).on('keydown', function(e) {
     if (e.keyCode == 13) {
         if ($('.selected').length == 0) {
@@ -188,6 +186,7 @@ Mousetrap.bind('esc', function(e) {
     window.close();
 });
 
+// Sort the history according to the visits
 function quickSort(arr, left, right) {
     var len = arr.length,
         pivot,
@@ -198,7 +197,6 @@ function quickSort(arr, left, right) {
         pivot = right;
         partitionIndex = partition(arr, pivot, left, right);
 
-        //sort left and right
         quickSort(arr, left, partitionIndex - 1);
         quickSort(arr, partitionIndex + 1, right);
     }

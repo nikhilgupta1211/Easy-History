@@ -1,8 +1,8 @@
-/* Initially hide the Input keyword div and Message paragraph.*/
+// Initially hide the Input keyword div and Message paragraph.
 $('#key-div').hide();
 $('#msg').hide();
 
-/*To show the add keyword option.*/
+// To show the add keyword option.
 Mousetrap.bind('ctrl+shift+k', function(e) {
     chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
         document.getElementById("weburl").defaultValue = tabs[0].url;
@@ -15,6 +15,7 @@ $('#sub').click(function() {
     save();
 });
 
+// Save the Keyword
 Mousetrap.bind(['ctrl+s', 'meta+s'], function(e) {
     if (e.preventDefault) {
         e.preventDefault();
