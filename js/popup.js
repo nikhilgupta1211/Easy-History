@@ -224,3 +224,11 @@ function swap(arr, i, j) {
     arr[i] = arr[j];
     arr[j] = temp;
 }
+
+if (navigator.appVersion.indexOf('Mac') != -1) {
+    $('.instructions').text("Use 'Command+Shift+K' to add a keyword, 'Up/Down' arrows to navigate and 'Command+B' to show the Keywords");
+    $('#shrt_save').text('Command+S or');
+} else {
+    $('.instructions').text("Use 'Ctrl+Shift+K' to add a keyword, 'Up/Down' arrows to navigate and 'Ctrl+B' to show the Keywords");
+    $('#shrt_save').text('Ctrl+S or');
+}

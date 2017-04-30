@@ -1,14 +1,27 @@
 $('#key_table').hide();
 
-Mousetrap.bind('ctrl+b', function(e) {
-    if (e.preventDefault) {
-        e.preventDefault();
-    } else {
-        // internet explorer
-        e.returnValue = false;
-    }
-    $('#key_table').toggle();
-});
+if (navigator.appVersion.indexOf("Mac") != -1) {
+    Mousetrap.bind('command+b', function(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            // internet explorer
+            e.returnValue = false;
+        }
+        $('#key_table').toggle();
+    });
+
+} else {
+    Mousetrap.bind('ctrl+b', function(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            // internet explorer
+            e.returnValue = false;
+        }
+        $('#key_table').toggle();
+    });
+}
 
 function tabl(keyword_data) {
     document.getElementById('key_table').innerHTML = ""

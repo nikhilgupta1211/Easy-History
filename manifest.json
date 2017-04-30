@@ -7,14 +7,15 @@
     "commands": {
           "_execute_browser_action": {
             "suggested_key": {
-              "default": "Ctrl+Space"
+              "default": "Ctrl+Space",
+              "mac": "Ctrl+Space"
             },
             "description": "Activate the Extension"
           }},
     "icons": {
       "128": "icons1.png"
     },
-    "version": "1.5",
+    "version": "1.6",
 
     "browser_action": {
         "default_icon": "icons1.png",

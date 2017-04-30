@@ -2,20 +2,42 @@
 $('#key-div').hide();
 $('#msg').hide();
 
-// To show the add keyword option.
-Mousetrap.bind('ctrl+shift+k', function(e) {
-    chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
-        document.getElementById("weburl").defaultValue = tabs[0].url;
-        document.getElementById("weburl").setAttribute('title', tabs[0].url);
+/*To show the add keyword option.*/
+if (navigator.appVersion.indexOf("Mac") != -1) {
+    Mousetrap.bind('command+shift+k', function(e) {
+        chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+            document.getElementById("weburl").defaultValue = tabs[0].url;
+            document.getElementById("weburl").setAttribute('title', tabs[0].url);
+        });
+        $('#key-div').toggle();
     });
-    $('#key-div').toggle();
-});
+} else {
+    Mousetrap.bind('ctrl+shift+k', function(e) {
+        chrome.tabs.query({ currentWindow: true, active: true }, function(tabs) {
+            document.getElementById("weburl").defaultValue = tabs[0].url;
+            document.getElementById("weburl").setAttribute('title', tabs[0].url);
+        });
+        $('#key-div').toggle();
+    });
+}
 
 $('#sub').click(function() {
     save();
 });
 
 // Save the Keyword
+if (navigator.appVersion.indexOf("Mac") != -1) {
+Mousetrap.bind(['command+s', 'meta+s'], function(e) {
+    if (e.preventDefault) {
+        e.preventDefault();
+    } else {
+        // internet explorer
+        e.returnValue = false;
+    }
+    save();
+});
+}
+else {
 Mousetrap.bind(['ctrl+s', 'meta+s'], function(e) {
     if (e.preventDefault) {
         e.preventDefault();
@@ -25,6 +47,7 @@ Mousetrap.bind(['ctrl+s', 'meta+s'], function(e) {
     }
     save();
 });
+}
 
 function save() {
     var url = $('#weburl').val();
