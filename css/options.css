@@ -1,0 +1,30 @@
+.thme {
+    width: 160px;
+    text-align: center;
+    font-size: 25px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.thme:focus{
+    outline: none;
+}
+
+.thme.dk {
+    background: #161616;
+    color: #ADFF2F;
+    font-weight: bold;
+}
+
+.thme.lg {
+    background-color: white;
+    font-weight: bold;
+}
+
+.thme.lg:hover {
+    background: rgba(234, 234, 234, 0.6);
+}
+
+.thme.dk:hover {
+    background: rgba(0, 0, 0, 0.84);
+}

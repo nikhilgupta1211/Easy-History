@@ -1,3 +1,19 @@
+chrome.storage.sync.get('theme_select', function(item) {
+    if (item.theme_select == "light") {
+        $("<link/>", {
+            rel: "stylesheet",
+            type: "text/css",
+            href: "css/light.css"
+        }).appendTo("head");
+    } else {
+        $("<link/>", {
+            rel: "stylesheet",
+            type: "text/css",
+            href: "css/dark.css"
+        }).appendTo("head");
+    }
+});
+
 var li;
 var liSelected;
 hist = [];
@@ -91,7 +107,7 @@ function buildPopupDom(divName, data) {
     for (var i = 0, ie = data.length; i < ie; ++i) {
         var a = document.createElement('a');
         a.href = data[i][1];
-        a.innerHTML = data[i][1].slice(0, 200);
+        a.innerHTML = data[i][1].slice(0, 80);
         a.addEventListener('click', onAnchorClick);
         var li = document.createElement('li');
         var p = document.createElement('p');

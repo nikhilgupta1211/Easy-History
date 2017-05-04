@@ -1,9 +1,8 @@
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     min-width: 200px;
     margin: 5px 0 0 0;
     max-width: 400px;
-    background-color: #161616;
 }
 
 #status {
@@ -13,11 +12,12 @@ body {
     max-width: 400px;
 }
 
-.hist-div.sea-div ul li {
+
+/*.hist-div.sea-div ul li {
     background-color: #161616;
     margin-bottom: 0;
     border-top: 0.2px #616161 solid;
-}
+}*/
 
 .hist-div.sea-div ul {
     margin-bottom: 0;
@@ -25,22 +25,21 @@ body {
 }
 
 .hist-div.sea-div ul li a {
-    color: #ADFF2F;
+    /*color: #ADFF2F;*/
 }
 
 .hist-div ul li {
     list-style: none;
-    background-color: #161616;
     padding: 10px;
-    font-size: 15px;
+    font-size: 14px;
     max-width: 390px;
-    border-bottom: 0.2px #616161 solid;
+    border-bottom: 0.2px #dcdbdb solid;
+    text-align: justify;
 }
 
 .hist-div ul li p {
     margin: 0;
     margin-bottom: 2px;
-    color: white;
     word-wrap: break-word;
 }
 
@@ -53,23 +52,24 @@ a:focus {
 }
 
 li:hover {
-    background: #282828 !important;
+    background: rgba(220, 213, 213, 0.36);
+    font-weight: 600;
 }
 
 .hist-div ul {
     padding: 0;
     overflow-x: hidden;
-    overflow-y: scroll;
     max-height: 400px;
     margin-top: 4px;
 }
 
 .hist-div ul a {
-    color: rgb(171, 170, 170);
+    color: #3737fd;
     text-decoration: none;
     font-weight: bold;
     display: block;
     word-wrap: break-word;
+    font-size: 13px;
 }
 
 .inpt {
@@ -97,15 +97,19 @@ li:hover {
     margin-bottom: 5px;
 }
 
+.short_save {
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .submt {
     padding: 7px;
     margin-top: 5px;
     margin-left: 2px;
-    background-color: #ADFF2F;
     color: black;
     font-weight: bold;
     border: none;
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .submt:hover {
@@ -113,23 +117,23 @@ li:hover {
 }
 
 .selected {
-    background: #282828 !important;
-}
-
-.selected a {
-    color: #ADFF2F !important;
+    background: rgba(220, 213, 213, 0.36);
+    font-weight: 600;
 }
 
 #msg {
     text-align: center;
     font-size: 20px;
-    color: #ADFF2F;
+    font-weight: bold;
+}
+
+.tdcent {
+    text-align: center !important;
 }
 
 .tabl {
     width: 100%;
     font-size: 15px;
-    color: white;
     margin-bottom: 5px;
 }
 
@@ -147,7 +151,7 @@ li:hover {
 .instructions {
     margin: 10px 0 0 0;
     background-color: #f0eeee;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .hist-div ul {
@@ -179,6 +183,6 @@ li:hover {
 .hist-div ul::-webkit-scrollbar-thumb {
     -webkit-border-radius: 10px;
     border-radius: 10px;
-    background: #ADFF2F;
+    background: #bcc1b4;
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }

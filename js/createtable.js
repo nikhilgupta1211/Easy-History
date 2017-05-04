@@ -39,6 +39,7 @@ function tabl(keyword_data) {
         table.appendChild(tr);
         var td1 = document.createElement('td');
         td1.innerHTML = key;
+        $(td1).attr({class:"tdcent"});
         tr.appendChild(td1);
         var td2 = document.createElement('td');
         td2.innerHTML = value;
