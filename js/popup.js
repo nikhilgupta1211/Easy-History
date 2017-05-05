@@ -1,3 +1,7 @@
+chrome.runtime.onInstalled.addListener(function(object) {
+    chrome.tabs.create({ url: "options.html" }, function(tab) {});
+});
+
 chrome.storage.sync.get('theme_select', function(item) {
     if (item.theme_select == "light") {
         $("<link/>", {
@@ -242,9 +246,31 @@ function swap(arr, i, j) {
 }
 
 if (navigator.appVersion.indexOf('Mac') != -1) {
-    $('.instructions').text("Use 'Command+Shift+K' to add a keyword, 'Up/Down' arrows to navigate and 'Command+B' to show the Keywords");
+    $('.instructions').text("Use 'Command+O' to go to options, 'Command+Shift+K' to add a keyword, 'Up/Down' arrows to navigate and 'Command+B' to show the Keywords.");
     $('#shrt_save').text('Command+S or');
 } else {
-    $('.instructions').text("Use 'Ctrl+Shift+K' to add a keyword, 'Up/Down' arrows to navigate and 'Ctrl+B' to show the Keywords");
+    $('.instructions').text("Use 'Ctrl+O' to go to options, 'Ctrl+Shift+K' to add a keyword, 'Up/Down' arrows to navigate and 'Ctrl+B' to show the Keywords.");
     $('#shrt_save').text('Ctrl+S or');
+}
+
+if (navigator.appVersion.indexOf("Mac") != -1) {
+    Mousetrap.bind('command+o', function(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            // internet explorer
+            e.returnValue = false;
+        }
+        window.open("options.html", "_self");
+    });
+} else {
+    Mousetrap.bind('ctrl+o', function(e) {
+        if (e.preventDefault) {
+            e.preventDefault();
+        } else {
+            // internet explorer
+            e.returnValue = false;
+        }
+        window.open("options.html", "_self");
+    });
 }

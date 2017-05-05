@@ -1,3 +1,14 @@
+.bd {
+    width: 500px;
+    margin: auto;
+    background: #eeeeee;
+    padding: 5px 0px 25px 25px;
+}
+
+.opt {
+    margin-left: 25px;
+}
+
 .thme {
     width: 160px;
     text-align: center;
@@ -6,7 +17,7 @@
     cursor: pointer;
 }
 
-.thme:focus{
+.thme:focus {
     outline: none;
 }
 

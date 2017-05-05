@@ -152,7 +152,8 @@ li:hover {
 .instructions {
     margin: 10px 0 0 0;
     background-color: #f0eeee;
-    font-size: 15px;
+    font-size: 13px;
+    text-align: justify;
 }
 
 .hist-div ul {

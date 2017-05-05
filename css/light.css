@@ -12,12 +12,11 @@ body {
     max-width: 400px;
 }
 
-
-/*.hist-div.sea-div ul li {
-    background-color: #161616;
-    margin-bottom: 0;
-    border-top: 0.2px #616161 solid;
-}*/
+.instructions a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
 
 .hist-div.sea-div ul {
     margin-bottom: 0;
@@ -152,6 +151,7 @@ li:hover {
     margin: 10px 0 0 0;
     background-color: #f0eeee;
     font-size: 12px;
+    text-align: justify;
 }
 
 .hist-div ul {

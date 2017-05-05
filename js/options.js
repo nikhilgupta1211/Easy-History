@@ -1,43 +1,73 @@
 $('#opt_msg').hide();
 $('#tcl').hide();
 $('#tcd').hide();
+$('#ttcl').hide();
+$('#vtcd').hide();
 
-$('#opt_sub').click(function() {
-    var val = document.querySelector('input[name="tp"]:checked').value;
-    chrome.storage.sync.set({ options_select: val }, function() {
-        $('#opt_msg').show().fadeOut(2000);
-    });
+$('#time').click(function() {
+    $('#ttcl').show();
+    $('#vtcd').hide();
+    chrome.storage.sync.set({ options_select: 'time' }, function() {});
 });
 
-chrome.storage.sync.get('options_select', function(item) {
-    if (item.options_select == "view") {
-        $("input[value = 'view']").attr({ checked: 'checked' });
-    } else {
-        $("input[value = 'time']").attr({ checked: 'checked' });
-    }
-});
+
+$('#visit').click(function() {
+    $('#vtcd').show();
+    $('#ttcl').hide();
+    chrome.storage.sync.set({ options_select: 'view' }, function() {});
+});;
 
 $('#dk').click(function() {
     $('#tcl').hide();
     $('#tcd').show();
-    chrome.storage.sync.set({ theme_select: 'dark' }, function() {
-        console.log('Dark theme set');
-    });
+    chrome.storage.sync.set({ theme_select: 'dark' }, function() {});
 });
 
 
 $('#lg').click(function() {
     $('#tcd').hide();
     $('#tcl').show();
-    chrome.storage.sync.set({ theme_select: 'light' }, function() {
-        console.log('Light theme set');
-    });
+    chrome.storage.sync.set({ theme_select: 'light' }, function() {});
 });;
 
-chrome.storage.sync.get('theme_select', function(item) {
+chrome.storage.sync.get(['theme_select', 'options_select'], function(item) {
     if (item.theme_select == "light") {
         $('#tcl').show();
     } else {
         $('#tcd').show();
     }
+    if (item.options_select == "time") {
+        $('#ttcl').show();
+    } else {
+        $('#vtcd').show();
+    }
 });
+
+$('#back').hide();
+
+chrome.tabs.getCurrent(function(tab) {
+    if (tab == undefined) {
+        if (navigator.appVersion.indexOf("Mac") != -1) {
+            Mousetrap.bind('command+o', function(e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                } else {
+                    // internet explorer
+                    e.returnValue = false;
+                }
+                window.open("popup.html", "_self");
+            });
+        } else {
+            Mousetrap.bind('ctrl+o', function(e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                } else {
+                    // internet explorer
+                    e.returnValue = false;
+                }
+                window.open("popup.html", "_self");
+            });
+        }
+        $('#back').show();
+    }
+})
