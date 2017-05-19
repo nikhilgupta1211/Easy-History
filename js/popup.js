@@ -38,7 +38,7 @@ function check_for_view_option() {
 /* Empty the div if there is no input in the search box*/
 function empty() {
     if (document.getElementById("in1").value == "") {
-        document.getElementById("nice").innerHTML = "";
+        document.getElementById("hist").innerHTML = "";
     }
 }
 
@@ -54,10 +54,11 @@ skd = [];
 // Search Function
 $('#in1').keyup(function(event) {
     if (event.keyCode <= 36 || event.keyCode >= 41) {
-        var nn = document.getElementById("nice");
+        var nn = document.getElementById("hist");
         nn.innerHTML = "";
         dd = [];
-        var key = this.value;
+        var key = this.value.toLowerCase();
+        key_a = key.split(" "); //tokens
         if (keyword_data[key] != undefined) {
             if (!skd.includes(keyword_data[key])) {
                 skd.push(keyword_data[key]);
@@ -67,25 +68,38 @@ $('#in1').keyup(function(event) {
             document.getElementById('search-key').innerHTML = "";
             skd = [];
         }
+
+        // var t0 = performance.now();
         for (var i = 0; i < hist.length; i++) {
+            count = 0;
+
             if (hist[i][0] != "") {
-                if (hist[i][0].toLowerCase().includes(key)) {
-                    dd.push(hist[i]);
-                } else {
-                    if (hist[i][1].includes(key)) {
-                        dd.push(hist[i]);
+                for (var j = 0; j < key_a.length; j++) {
+                    if (hist[i][0].toLowerCase().includes(key_a[j])) {
+                        count++;
+                    } else {
+                        if (hist[i][1].toLowerCase().includes(key)) {
+                            dd.push(hist[i]);
+                            break;
+                        }
                     }
                 }
+
             } else {
-                if (hist[i][1].includes(key)) {
+                if (hist[i][1].toLowerCase().includes(key)) {
                     dd.push(hist[i]);
                 }
             }
-        }
 
+            if (count == key_a.length) {
+                dd.push(hist[i]);
+            }
+        }
+        // var t1 = performance.now();
+        // console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
         window.displayBoxIndex = -1;
         // var t0 = performance.now();
-        buildPopupDom("nice", dd.slice(0, 250));
+        buildPopupDom("hist", dd.slice(0, 150));
         // var t1 = performance.now();
         // console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
         empty();
@@ -145,7 +159,7 @@ function buildPopupDomKey(divName, data) {
 // Fetch the history
 function buildTypedUrlList() {
     // To look for history items visited in the last 100 days,
-    var microsecondsBack = 1000 * 60 * 60 * 24 * 100;
+    var microsecondsBack = 1000 * 60 * 60 * 24 * 365;
     var startTime = (new Date).getTime() - microsecondsBack;
     var numRequestsOutstanding = 0;
     chrome.history.search({
