@@ -72,6 +72,11 @@ li:hover {
     word-wrap: break-word;
 }
 
+.keystar{
+    font-size: 15px;
+    margin-right: 2px;
+}
+
 .inpt {
     text-align: center;
     padding: 8px 0;
