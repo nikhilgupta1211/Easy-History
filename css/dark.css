@@ -16,7 +16,6 @@ body {
 .hist-div.sea-div ul li {
     background-color: #161616;
     margin-bottom: 0;
-    border-top: 0.2px #616161 solid;
 }
 
 .hist-div.sea-div ul {
@@ -26,15 +25,18 @@ body {
 
 .hist-div.sea-div ul li a {
     color: #ADFF2F;
+    text-align: initial;
 }
 
 .hist-div ul li {
     list-style: none;
-    background-color: #161616;
     padding: 10px;
-    font-size: 15px;
+    font-size: 14px;
     max-width: 390px;
-    border-bottom: 0.2px #616161 solid;
+    text-align: justify;
+    margin: 0px 12px 10px 7px;
+    box-shadow: 7px -4px 9px 0px rgba(173, 255, 47, 0.3);
+    border: 1px solid rgba(89, 84, 84, 0.46);
 }
 
 .hist-div ul li p {
@@ -72,7 +74,7 @@ li:hover {
     word-wrap: break-word;
 }
 
-.keystar{
+.keystar {
     font-size: 15px;
     margin-right: 2px;
 }

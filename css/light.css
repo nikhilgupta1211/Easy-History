@@ -25,6 +25,7 @@ body {
 
 .hist-div.sea-div ul li {
     background: #7755fb;
+    text-align: initial;
 }
 
 .hist-div.sea-div ul li a {

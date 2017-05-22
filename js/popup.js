@@ -148,8 +148,7 @@ function buildPopupDomKey(divName, data) {
     for (var i = 0, ie = data.length; i < ie; ++i) {
         var a = document.createElement('a');
         a.href = data[i];
-        a.innerHTML = '<strong class="keystar">&#9733;</strong>';
-        a.appendChild(document.createTextNode(data[i]));
+        a.innerHTML = '<strong class="keystar">&#9733;</strong>' + data[i];
         a.addEventListener('click', onAnchorClick);
         var li = document.createElement('li');
         li.appendChild(a);
